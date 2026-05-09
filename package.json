@@ -1,18 +1,23 @@
 {
   "name": "site_pra_clover",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API estilo GitHub para salvar repositórios, commits e linhas modificadas",
+  "main": "server/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon ./server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^5.2.1",
+    "sequelize": "^6.37.3",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.14"
   }
 }

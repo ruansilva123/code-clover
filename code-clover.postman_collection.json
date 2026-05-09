@@ -1,0 +1,359 @@
+{
+  "info": {
+    "name": "Code Clover API",
+    "description": "API estilo GitHub para salvar repositórios, commits e linhas modificadas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Root",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "List users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          }
+        },
+        {
+          "name": "Get user by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create user",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"ruan@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          }
+        },
+        {
+          "name": "Update user",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"ruan.silva@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete user",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Repositories",
+      "item": [
+        {
+          "name": "List repositories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/repositories",
+              "host": ["{{baseUrl}}"],
+              "path": ["repositories"]
+            }
+          }
+        },
+        {
+          "name": "Get repository by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/repositories/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["repositories", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create repository",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"meu-repo\",\n  \"user_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/repositories",
+              "host": ["{{baseUrl}}"],
+              "path": ["repositories"]
+            }
+          }
+        },
+        {
+          "name": "Update repository",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"meu-repo-renomeado\",\n  \"user_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/repositories/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["repositories", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete repository",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/repositories/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["repositories", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Commits",
+      "item": [
+        {
+          "name": "List commits",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/commits",
+              "host": ["{{baseUrl}}"],
+              "path": ["commits"]
+            }
+          }
+        },
+        {
+          "name": "Get commit by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/commits/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["commits", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create commit (com modifies)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"feat: adiciona endpoint de usuários\",\n  \"repository_id\": 1,\n  \"modifies\": [\n    {\n      \"file_name\": \"server/controllers/UserController.js\",\n      \"line\": 12,\n      \"line_content\": \"const users = await User.findAll();\"\n    },\n    {\n      \"file_name\": \"server/routes/userRoutes.js\",\n      \"line\": 7,\n      \"line_content\": \"router.get('/', UserController.index);\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/commits",
+              "host": ["{{baseUrl}}"],
+              "path": ["commits"]
+            }
+          }
+        },
+        {
+          "name": "Create commit (sem modifies)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"chore: commit vazio\",\n  \"repository_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/commits",
+              "host": ["{{baseUrl}}"],
+              "path": ["commits"]
+            }
+          }
+        },
+        {
+          "name": "Update commit",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"feat: mensagem editada\",\n  \"repository_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/commits/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["commits", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete commit",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/commits/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["commits", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Modifies",
+      "item": [
+        {
+          "name": "List modifies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/modifies",
+              "host": ["{{baseUrl}}"],
+              "path": ["modifies"]
+            }
+          }
+        },
+        {
+          "name": "Get modify by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/modifies/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["modifies", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create modify",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_name\": \"src/index.js\",\n  \"line\": 42,\n  \"line_content\": \"console.log('hello world');\",\n  \"commit_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/modifies",
+              "host": ["{{baseUrl}}"],
+              "path": ["modifies"]
+            }
+          }
+        },
+        {
+          "name": "Update modify",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_name\": \"src/index.js\",\n  \"line\": 43,\n  \"line_content\": \"console.log('atualizado');\",\n  \"commit_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/modifies/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["modifies", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete modify",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/modifies/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["modifies", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
