@@ -1,3 +1,6 @@
+git-init:
+	python3 git_init.py
+
 git-commit:
 	python3 git_commit.py
 
