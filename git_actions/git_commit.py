@@ -15,6 +15,7 @@ if __name__ == "__main__":
                 "repository_id": repo_id
             }
         )
-        
+
+        print("Commit saved in origin...")
     except Exception as e:
         print(f"Error to make commit. Error: {e}")
