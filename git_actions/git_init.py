@@ -8,14 +8,14 @@ if __name__ == "__main__":
         print("Enter the repository name: ")
         name = str(input())
 
-        req.post(
-            url='http://localhost:3000/commits',
+        payload = req.post(
+            url='http://localhost:3000/repositories',
             json={
                 "name": name,
                 "user_id": user_id
             }
         )
 
-        print("Repository created in origin...")
+        print("Repository created in origin...", payload.text)
     except Exception as e:
         print(f"Error to create repository. Error: {e}")
