@@ -6,11 +6,11 @@ if __name__ == "__main__":
         repo_id = int(input())
 
         print("Enter the commit message: ")
-        message = input()
+        message = str(input())
 
         req.post(
             url='http://localhost:3000/commits',
-            data={
+            json={
                 "message": message,
                 "repository_id": repo_id
             }
